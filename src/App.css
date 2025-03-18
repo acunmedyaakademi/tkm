@@ -23,6 +23,7 @@ body {
 }
 
 .user-controls {
+<<<<<<< HEAD
     display: flex;
     gap: 20px;
     margin-right: 40px;
@@ -80,3 +81,40 @@ body {
 /* ali css bitiş */
 
 
+=======
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-right: 40px;
+
+  button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    height: 40px;
+    width: 100px;
+    cursor: pointer;
+    font-size: 15px;
+  }
+
+  p, button {
+    color: var(--headerFontColor);
+  }
+
+  p {
+    text-decoration: underline;
+  }
+
+  .signup {
+    border: 1px solid var(--headerFontColor);
+  }
+}
+
+.user-control-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* berna son */
+>>>>>>> 0f2b783f097f5f22ce093077160cd1d61a0ea092
