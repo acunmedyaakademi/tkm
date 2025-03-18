@@ -5,18 +5,18 @@ export default function MainPage() {
         
 
         <div className="hero">
-          <h3>Burada rock papper </h3>
-          <img src="" alt="" />
-          <button>geri</button>
-          <button>ileri</button>
+          <div className="hero-area">
+            <img src="public/imgs/rps-hero.jpeg" alt="" />
+           
+          </div>
         </div>
 
         <div className="footer">
           <div>
-            <h3>Last Played & Scores</h3>
+            <h3>Last Played & Scores(🪧)</h3>
           </div>
           <div>
-            <h3>Online Players</h3>
+            <h3>Online Players(🟢)</h3>
           </div>
         </div>
       </div>
