@@ -103,7 +103,7 @@ h4 {
   height: 114px;
   border-radius: 8px;
   display: grid;
-  
+
 }
 
 .scoretxt {
@@ -116,50 +116,43 @@ h4 {
 
 .game-container {
   border-radius: 50%;
-  /* background: linear-gradient(0deg, #F3F3F3 0%, #DADADA 98.34%); */
   width: 129.37px;
   height: 126.78px;
-  border: 15px solid rgba(70, 100, 244, 1);
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
 
-.makas-box {
-  border-radius: 50%;
-  background: linear-gradient(0deg, #F3F3F3 0%, #DADADA 98.34%);
-  width: 129.37px;
-  height: 126.78px;
-  border: 15px solid rgba(235, 159, 14, 1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
 
-.rock-box {
-  border-radius: 50%;
-  background: linear-gradient(0deg, #F3F3F3 0%, #DADADA 98.34%);
-  width: 129.37px;
-  height: 126.78px;
-  border: 15px solid rgba(219, 46, 77, 1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-.user-choose-inner {
-  background: url(../img/traingles.svg) no-repeat center;
-  max-width: 550px;
+.container {
+  background: url(./imgs/traingles.svg) no-repeat center;
   justify-content: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 65px;
   margin-inline: auto;
-  margin-top: 65px;
+  margin-top: 15px;
+  position: relative;
+  width: 476px;
+  height: 430px;
+}
+
+.rock {
+  position: absolute;
+  top: 250px;
+}
+
+.paper {
+  position: absolute;
+  top: 80px;
+  left: 290px;
+}
+.scissors{
+  position: absolute;
+  right: 290px;
+  top: 80px;
 }
 
 .first-section {

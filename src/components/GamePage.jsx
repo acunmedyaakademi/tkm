@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { use, useState } from 'react';
 import "../game.css"
 
 const MainiconSvg = <svg width="162" height="100" viewBox="0 0 162 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -23,14 +23,16 @@ export default function GamePage() {
   const [userChoice, setUserChoice] = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
   const [result, setResult] = useState(null);
+  const [click, setClick] = useState(false)
 
   const options = [
-    { title: "rock", img: rockSvg, color: "#DB2E4D" },
-    { title: "paper", img: paperSvg, color: "#4664F4" },
-    { title: "scissors", img: scissorsSvg, color: "#EB9F0E" }
+    { title: "rock", img: "/imgs/rock.svg", color: "#DB2E4D" },
+    { title: "paper", img: "/imgs/paper.svg", color: "#4664F4" },
+    { title: "scissors", img: "/imgs/makas.svg", color: "#EB9F0E" }
   ];
 
   const playGame = (userSelection) => {
+    setClick(true)
     setUserChoice(userSelection);
     const randomIndex = Math.floor(Math.random() * options.length);
     const computerSelection = options[randomIndex].title;
@@ -60,29 +62,44 @@ export default function GamePage() {
           </div>
         </header>
       </div>
-      <div className="container">
-        {options.map(option => (
-          <div key={option.title}>
-          <button className="game-container" 
-            onClick={() => playGame(option.title)}
-          >
-            <img src={option.img} alt={option.title} />
-          </button>
+      {
+        click ? null : (
+          <div className="container">
+            {options.map((option) => (
+              <div key={option.title} className={option.title}>
+                <button
+                  className="game-container"
+                  style={{ border: `15px solid ${option.color}` }}
+                  onClick={() => playGame(option.title)}
+                >
+                  <img src={option.img} alt={option.title} />
+                </button>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      {userChoice && computerChoice && (
+        )
+      }
+      {click ? (
         <div className="result-container">
-          <p>You chose: {userChoice}</p>
+          <p>YOU PICKED </p>
+          <div>
+            {console.log(userChoice)}
+          </div>
           <p>Computer chose: {computerChoice}</p>
           <h2>{result}</h2>
-          <button onClick={() => {
-            setUserChoice(null);
-            setComputerChoice(null);
-            setResult(null);
-          }}>Play Again</button>
+          <button
+          className='playAgain'
+            onClick={() => {
+              setUserChoice(null);
+              setComputerChoice(null);
+              setResult(null);
+              setClick(false)
+            }}
+          >
+            Play Again
+          </button>
         </div>
-      )}
+      ) : null}
     </>
   );
 }
