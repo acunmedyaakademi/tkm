@@ -20,6 +20,7 @@
 
 .user-controls {
   display: flex;
+  align-items: center;
   gap: 20px;
   margin-right: 40px;
 
@@ -27,16 +28,29 @@
     background-color: transparent;
     outline: none;
     border: none;
-    color: var(--headerFontColor);
     height: 40px;
     width: 100px;
     cursor: pointer;
     font-size: 15px;
   }
 
+  p, button {
+    color: var(--headerFontColor);
+  }
+
+  p {
+    text-decoration: underline;
+  }
+
   .signup {
     border: 1px solid var(--headerFontColor);
   }
+}
+
+.user-control-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 /* berna son */
