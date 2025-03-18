@@ -1,9 +1,12 @@
 import { createRoot } from 'react-dom/client'
-import './index.css'
 import MainPage from './components/MainPage.jsx'
+import { BrowserRouter as Router } from 'react-router-dom';
+import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <>
-    <MainPage />
+    <Router>
+      <App />
+    </Router>
   </>
 )
