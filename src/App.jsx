@@ -12,12 +12,14 @@ export const UserContext = createContext(null);
 
 function App() {
   const [authUser, setAuthUser] = useState(null);
+  const [userId, setUserId] = useState(null);
   
   useEffect(() => {
     const { data } = supabase.auth.onAuthStateChange((event, session) => {
       
       if (event === 'SIGNED_IN') {
         setAuthUser(session.user.user_metadata);
+        setUserId(session.user.user_metadata.sub)
       }
 
       if (event === 'SIGNED_OUT') {
@@ -30,7 +32,7 @@ function App() {
 
   return (
     <>
-    <UserContext.Provider value={{ supabase, authUser, setAuthUser }}>
+    <UserContext.Provider value={{ supabase, authUser, setAuthUser, userId }}>
       <Header />
       <Routes>
         <Route path='/' element={<MainPage />} />

@@ -1,5 +1,6 @@
-import { use, useState } from 'react';
+import { use, useContext, useEffect, useState } from 'react';
 import "../game.css"
+import { UserContext } from '../App';
 
 const MainiconSvg = <svg width="162" height="100" viewBox="0 0 162 100" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g id="ROCKPAPERSCISSORS." filter="url(#filter0_d_0_1800)">
@@ -23,13 +24,27 @@ export default function GamePage() {
   const [userChoice, setUserChoice] = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
   const [result, setResult] = useState(null);
-  const [click, setClick] = useState(false)
+  const [click, setClick] = useState(false);
+  const [userScore, setUserScore] = useState(null);
+  const { supabase, authUser, userId } = useContext(UserContext);
 
   const options = [
     { title: "rock", img: "/imgs/rock.svg", color: "#DB2E4D" },
     { title: "paper", img: "/imgs/paper.svg", color: "#4664F4" },
     { title: "scissors", img: "/imgs/makas.svg", color: "#EB9F0E" }
   ];
+
+  useEffect(() => {
+    async function getUsers() {
+      let { data, error } = await supabase
+        .from('users')
+        .select('user_id, score')
+        .eq('user_id', userId)
+      data && setUserScore(data[0]?.score);
+    }
+    getUsers();
+
+  }, [userId])
 
   const playGame = (userSelection) => {
     setClick(true)
@@ -46,10 +61,32 @@ export default function GamePage() {
       (userSelection === "scissors" && computerSelection === "paper")
     ) {
       setResult("You Win!");
+      increaseScore();
     } else {
       setResult("Computer Wins!");
+      userScore > 50 && decreaseScore();
     }
   };
+
+  async function increaseScore() {
+    const newScore = userScore + 1;
+    setUserScore(prev => prev + 1);
+    const { data, error } = await supabase
+      .from('users')
+      .update({ score: newScore })
+      .eq('user_id', userId)
+      .select()
+  }
+
+  async function decreaseScore() {
+    const newScore = userScore - 1;
+    setUserScore(prev => prev - 1);
+    const { data, error } = await supabase
+      .from('users')
+      .update({ score: newScore })
+      .eq('user_id', userId)
+      .select()
+  }
 
   return (
     <>
@@ -58,7 +95,7 @@ export default function GamePage() {
           {MainiconSvg}
           <div className="score-board">
             <h4>SCORE</h4>
-            <span className="scoretxt">12</span>
+            <span className="scoretxt">{userScore}</span>
           </div>
         </header>
       </div>
@@ -88,7 +125,7 @@ export default function GamePage() {
           <p>Computer chose: {computerChoice}</p>
           <h2>{result}</h2>
           <button
-          className='playAgain'
+            className='playAgain'
             onClick={() => {
               setUserChoice(null);
               setComputerChoice(null);

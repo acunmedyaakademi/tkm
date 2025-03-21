@@ -17,6 +17,12 @@ export default function Header() {
       password,
       options
     })
+    
+    await supabase.from('users')
+    .insert([
+      { name, email },
+    ]).select()
+            
     signUpRef.current.close();
   }
 
@@ -41,12 +47,14 @@ export default function Header() {
   return (
     <>
       <div className="header-cont">
-        <img src="public\imgs\rps-logo.png" alt="" />
+        <a href="/"><img src="public\imgs\rps-logo.png" alt="" /></a>
         <div className="user-controls">
           {
             authUser
               ? <>
                 <p>{authUser.name}</p>
+                <span>|</span>
+                <a href="/game"><p>Play</p></a>
                 <button onClick={handleLogout}>Sign Out</button>
               </>
               : <>
