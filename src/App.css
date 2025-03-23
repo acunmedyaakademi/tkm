@@ -18,7 +18,10 @@ body {
     justify-content: space-between;
 
     * {
-        font-family: "Reem Kufi Ink", sans-serif;
+      font-family: "Reem Kufi Ink", sans-serif;
+    }
+    a {
+      color: white;
     }
 }
 
@@ -41,6 +44,13 @@ body {
     .signup {
         border: 1px solid var(--headerFontColor);
     }
+}
+
+.profile-page {
+  h1, h2, h3, h4, h5, a, a:active, p {
+    color: white;
+    text-decoration: none;
+  }
 }
 
 /* berna son */

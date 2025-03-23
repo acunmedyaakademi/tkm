@@ -52,7 +52,7 @@ export default function Header() {
           {
             authUser
               ? <>
-                <p>{authUser.name}</p>
+                <p><a href="/profile">{authUser.name}</a></p>
                 <span>|</span>
                 <a href="/game"><p>Play</p></a>
                 <button onClick={handleLogout}>Sign Out</button>
@@ -60,7 +60,6 @@ export default function Header() {
               : <>
                 <button onClick={() => loginRef.current.showModal()} className="login">Giriş Yap</button>
                 <button onClick={() => signUpRef.current.showModal()} className="signup">Kayıt Ol</button>
-
               </>
 
           }
