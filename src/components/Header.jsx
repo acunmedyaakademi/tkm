@@ -61,7 +61,6 @@ export default function Header() {
                 <button onClick={() => loginRef.current.showModal()} className="login">Giriş Yap</button>
                 <button onClick={() => signUpRef.current.showModal()} className="signup">Kayıt Ol</button>
               </>
-
           }
         </div>
       </div>

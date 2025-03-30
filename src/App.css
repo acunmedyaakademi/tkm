@@ -53,6 +53,20 @@ body {
   }
 }
 
+.online-user a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer {
+  > div {
+    color: white;
+    li {
+      list-style: none;
+    }
+  }
+}
+
 /* berna son */
 
 

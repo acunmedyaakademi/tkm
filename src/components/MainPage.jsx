@@ -29,7 +29,7 @@ export default function MainPage() {
 
         <div className="hero">
           <div className="hero-area">
-            <img src="public/imgs/rps-hero.jpeg" alt="" />
+            <a href="/game"><img src="public/imgs/rps-hero.jpeg" alt="" /></a>
 
           </div>
         </div>
@@ -49,8 +49,8 @@ export default function MainPage() {
             <h3>Online Players(🟢) {[...new Set(usersCurrentlyOnline)].length}</h3>
             <ul>
               {
-                [...new Set(usersCurrentlyOnline)].map(x => <li key={crypto.randomUUID()}>
-                  {x}
+                [...new Set(usersCurrentlyOnline)].map(x => <li className="online-user" key={crypto.randomUUID()}>
+                  {x == authUser?.name ? <p>{x}</p> : <a href="/game">{x}</a>}
                 </li>)
               }
             </ul>
